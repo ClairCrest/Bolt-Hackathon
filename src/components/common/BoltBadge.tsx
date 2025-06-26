@@ -1,7 +1,4 @@
 import React from 'react';
-import blackCircle from '../../assets/black_circle_360x360.png';
-import whiteCircle from '../../assets/white_circle_360x360.png';
-import logoText from '../../assets/logotext_poweredby_360w.png';
 
 interface BoltBadgeProps {
   variant?: 'white' | 'black' | 'text';
@@ -20,21 +17,32 @@ export default function BoltBadge({
     lg: 'w-16 h-16'
   };
 
-  const getImageSrc = () => {
+  const getStyles = () => {
+    const baseStyles = `${sizeClasses[size]} rounded-full flex items-center justify-center font-bold text-white transition-all duration-200 hover:scale-110 hover:opacity-80`;
+    
     switch (variant) {
       case 'white':
-        return whiteCircle;
+        return `${baseStyles} bg-white text-gray-800 border-2 border-gray-200`;
       case 'black':
-        return blackCircle;
+        return `${baseStyles} bg-gray-800 text-white`;
       case 'text':
-        return logoText;
+        return `${baseStyles} bg-gradient-to-r from-blue-500 to-purple-600`;
       default:
-        return blackCircle;
+        return `${baseStyles} bg-gray-800 text-white`;
     }
   };
 
-  const getAltText = () => {
-    return variant === 'text' ? 'Powered by Bolt.new' : 'Built with Bolt.new';
+  const getText = () => {
+    switch (size) {
+      case 'sm':
+        return 'B';
+      case 'md':
+        return 'BOLT';
+      case 'lg':
+        return 'BOLT';
+      default:
+        return 'B';
+    }
   };
 
   return (
@@ -42,14 +50,16 @@ export default function BoltBadge({
       href="https://bolt.new/"
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-block transition-all duration-200 hover:scale-110 hover:opacity-80 ${className}`}
+      className={`inline-block ${className}`}
       title="Built with Bolt.new"
     >
-      <img
-        src={getImageSrc()}
-        alt={getAltText()}
-        className={`${sizeClasses[size]} object-contain`}
-      />
+      <div className={getStyles()}>
+        {variant === 'text' ? (
+          <span className="text-xs font-bold">Powered by Bolt</span>
+        ) : (
+          <span className={size === 'sm' ? 'text-xs' : 'text-sm'}>{getText()}</span>
+        )}
+      </div>
     </a>
   );
 }
