@@ -5,11 +5,13 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import History from './components/History'
+import LandingPage from './components/LandingPage'
 
 function AppRoutes() {
   const { isAuthenticated } = useAuth()
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route
@@ -22,7 +24,7 @@ function AppRoutes() {
       />
       <Route
         path="*"
-        element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />}
+        element={<Navigate to="/" replace />}
       />
     </Routes>
   )
