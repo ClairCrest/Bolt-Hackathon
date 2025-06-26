@@ -18,30 +18,17 @@ export default function BoltBadge({
   };
 
   const getStyles = () => {
-    const baseStyles = `${sizeClasses[size]} rounded-full flex items-center justify-center font-bold transition-all duration-200 hover:scale-110 hover:opacity-80 shadow-lg`;
+    const baseStyles = `${sizeClasses[size]} rounded-full flex items-center justify-center font-bold transition-all duration-200 hover:scale-110 cursor-pointer shadow-lg border-2`;
     
     switch (variant) {
       case 'white':
-        return `${baseStyles} bg-white text-gray-800 border-2 border-gray-200`;
+        return `${baseStyles} bg-white text-gray-800 border-gray-300 hover:border-gray-400`;
       case 'black':
-        return `${baseStyles} bg-gray-900 text-white`;
+        return `${baseStyles} bg-gray-900 text-white border-gray-700 hover:bg-gray-800`;
       case 'text':
-        return `${baseStyles} bg-gradient-to-r from-blue-500 to-purple-600 text-white`;
+        return `${baseStyles} bg-gradient-to-r from-blue-500 to-purple-600 text-white border-transparent`;
       default:
-        return `${baseStyles} bg-gray-900 text-white`;
-    }
-  };
-
-  const getText = () => {
-    switch (size) {
-      case 'sm':
-        return 'BOLT';
-      case 'md':
-        return 'BOLT';
-      case 'lg':
-        return 'BOLT';
-      default:
-        return 'BOLT';
+        return `${baseStyles} bg-gray-900 text-white border-gray-700 hover:bg-gray-800`;
     }
   };
 
@@ -54,11 +41,7 @@ export default function BoltBadge({
       title="Built with Bolt.new"
     >
       <div className={getStyles()}>
-        {variant === 'text' ? (
-          <span className="text-xs font-bold px-2">Powered by Bolt</span>
-        ) : (
-          <span className="font-bold">{getText()}</span>
-        )}
+        <span className="font-extrabold tracking-tight">BOLT</span>
       </div>
     </a>
   );

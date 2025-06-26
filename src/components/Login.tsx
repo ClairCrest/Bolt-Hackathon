@@ -37,7 +37,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Bolt.new Badge - Top Right */}
-      <div className="fixed top-6 right-6 z-50">
+      <div className="fixed top-4 right-4 z-50">
         <BoltBadge variant="black" size="md" />
       </div>
 
