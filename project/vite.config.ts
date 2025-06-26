@@ -10,12 +10,21 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8000',
+        target: 'http://localhost:3001',
         changeOrigin: true,
         secure: false,
       },
+      '/chatbot': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+      }
     },
-    host: true, 
-    allowedHosts: ['.trycloudflare.com'], 
+    host: true,
+    port: 5173
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: true
+  }
 });

@@ -37,7 +37,6 @@ A comprehensive AI-powered research paper discovery and analysis platform that a
 ### Database & Storage
 - **Supabase** for authentication and data storage
 - **PostgreSQL** (via Supabase) for paper metadata
-- **Supabase Storage** for uploaded PDF files
 
 ### AI & ML
 - **OpenAI API** for text summarization and chat
@@ -161,8 +160,8 @@ npm run dev
 
 4. **Access the Application**:
 - Frontend: http://localhost:5173
-- Backend API: http://localhost:8000
 - Server API: http://localhost:3001
+- Backend API: http://localhost:8000
 
 ## 🔧 Configuration
 
@@ -177,11 +176,11 @@ The app supports various ArXiv categories including:
 
 ### API Endpoints
 
-#### Main API (FastAPI - Port 8000)
-- `GET /summarize?query={query}` - Search and summarize papers
-- `POST /upload-pdf` - Upload and analyze PDF
-- `GET /papers/all` - Get papers by category
-- `GET /papers/categories` - Get papers by multiple categories
+#### Main API (via Node.js proxy - Port 3001)
+- `GET /api/summarize?query={query}` - Search and summarize papers
+- `POST /api/upload-pdf` - Upload and analyze PDF
+- `GET /api/papers/all` - Get papers by category
+- `GET /api/papers/categories` - Get papers by multiple categories
 
 #### RAG Chat API (via proxy - Port 3001)
 - `POST /api/create_rag_session` - Create RAG session from uploaded PDF
@@ -226,7 +225,7 @@ The app supports various ArXiv categories including:
 
 ### Common Issues
 
-1. **CORS Errors**: Ensure backend CORS is properly configured
+1. **CORS Errors**: Ensure all services are running on correct ports
 2. **Database Connection**: Check Supabase credentials and RLS policies
 3. **OpenAI API**: Verify API key and rate limits
 4. **PDF Processing**: Ensure PDFs are text-based, not image-only

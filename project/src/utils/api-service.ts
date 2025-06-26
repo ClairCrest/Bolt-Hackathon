@@ -1,23 +1,31 @@
 // API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 export const apiConfig = {
   baseUrl: API_BASE_URL,
   endpoints: {
-    // Existing endpoints
-    summarize: '/summarize',
-    uploadPdf: '/upload-pdf',
+    // Main API endpoints (proxied through server)
+    summarize: '/api/summarize',
+    uploadPdf: '/api/upload-pdf',
     
-    // New endpoints for fetching all papers
-    allPapers: '/papers/all',
-    categoriesPapers: '/papers/categories',
-    recentPapers: '/papers/recent'
+    // Paper endpoints
+    allPapers: '/api/papers/all',
+    categoriesPapers: '/api/papers/categories',
+    recentPapers: '/api/papers/recent',
+    
+    // RAG Chat endpoints
+    createRagSession: '/api/create_rag_session',
+    createRagSessionFromUrl: '/api/create_rag_session_from_url',
+    chatWithRag: '/api/chat_with_rag',
+    ragProgress: '/api/rag_progress'
   }
 };
 
 // API Service Functions
 export class ArxivApiService {
-  private static baseUrl = apiConfig.baseUrl;  // Fetch all papers
+  private static baseUrl = apiConfig.baseUrl;
+
+  // Fetch all papers
   static async getAllPapers(params: {
     category: string;
     maxResults?: number;
@@ -62,7 +70,9 @@ export class ArxivApiService {
       
       throw error;
     }
-  }// Fetch papers by categories
+  }
+
+  // Fetch papers by categories
   static async getPapersByCategories(categories: string[], maxPerCategory = 10) {
     const url = new URL(`${this.baseUrl}${apiConfig.endpoints.categoriesPapers}`);
     
@@ -90,7 +100,8 @@ export class ArxivApiService {
     }
     return await response.json();
   }
-  // Existing summarize function
+
+  // Summarize paper
   static async summarizePaper(query: string) {
     const url = new URL(`${this.baseUrl}${apiConfig.endpoints.summarize}`);
     url.searchParams.append('query', query);
@@ -130,7 +141,7 @@ export class ArxivApiService {
     }
   }
 
-  // Existing upload PDF function
+  // Upload PDF
   static async uploadPdf(file: File) {
     const formData = new FormData();
     formData.append('file', file);

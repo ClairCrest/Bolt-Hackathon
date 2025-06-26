@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const FASTAPI_URL = process.env.FASTAPI_URL || 'https://equally-lowest-wearing-muscles.trycloudflare.com/chatbot';
+const FASTAPI_URL = process.env.FASTAPI_URL || 'http://localhost:8000';
 
 app.use(cors());
 app.use(express.json());
@@ -20,6 +20,52 @@ const upload = multer();
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'AI Paper Summarizer API is running' });
+});
+
+// Proxy all /api/* requests to FastAPI backend
+app.use('/api', async (req, res, next) => {
+  // Skip our custom endpoints
+  if (req.path === '/health' || 
+      req.path === '/create_rag_session_from_url' || 
+      req.path.startsWith('/rag_progress/')) {
+    return next();
+  }
+
+  const url = FASTAPI_URL + req.url;
+  const method = req.method;
+  const headers = { ...req.headers };
+  delete headers['host'];
+
+  let body = undefined;
+  if (method !== 'GET' && method !== 'HEAD') {
+    if (req.is('application/json')) {
+      body = JSON.stringify(req.body);
+    } else if (req.is('application/x-www-form-urlencoded')) {
+      body = new URLSearchParams(req.body).toString();
+    }
+  }
+
+  try {
+    const response = await fetch(url, {
+      method,
+      headers,
+      body,
+    });
+    
+    const contentType = response.headers.get('content-type');
+    res.status(response.status);
+    
+    if (contentType && contentType.includes('application/json')) {
+      const data = await response.json();
+      res.json(data);
+    } else {
+      const text = await response.text();
+      res.send(text);
+    }
+  } catch (err) {
+    console.error('Proxy error:', err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Main endpoint for processing papers
@@ -51,7 +97,7 @@ app.post('/api/process-paper', async (req, res) => {
   }
 });
 
-// Endpoint สำหรับสร้าง RAG session จาก PDF URL
+// Endpoint for creating RAG session from PDF URL
 app.post('/api/create_rag_session_from_url', async (req, res) => {
   try {
     const { pdf_url } = req.body;
@@ -63,23 +109,23 @@ app.post('/api/create_rag_session_from_url', async (req, res) => {
   }
 });
 
-// Endpoint สำหรับดึง progress
+// Endpoint for getting RAG progress
 app.get('/api/rag_progress/:sessionId', (req, res) => {
   const { sessionId } = req.params;
   const progress = getRagProgress(sessionId);
   res.json({ progress });
 });
 
-// Proxy /chatbot/* ไปยัง FastAPI backend
+// Proxy /chatbot/* to FastAPI backend with multipart support
 app.use('/chatbot', upload.any(), async (req, res, next) => {
-  const url = FASTAPI_URL + req.url;
+  const url = FASTAPI_URL + '/api' + req.url;
   const method = req.method;
   const headers = { ...req.headers };
   delete headers['host'];
 
-  // รองรับ multipart/form-data
+  // Handle multipart/form-data
   if (req.is('multipart/form-data')) {
-    return proxyMultipart(req, res, FASTAPI_URL);
+    return proxyMultipart(req, res, FASTAPI_URL + '/api');
   }
 
   let body = undefined;
@@ -113,4 +159,5 @@ app.use('/chatbot', upload.any(), async (req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Proxying to FastAPI backend at ${FASTAPI_URL}`);
 });
