@@ -57,8 +57,7 @@ export default {
         'purple-glow': '0 0 15px 2px rgba(139, 92, 246, 0.3)',
         'card': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
         'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-      },
-      animation: {
+      },      animation: {
         'float': 'float 6s ease-in-out infinite',
         'pulse-slow': 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'gradient': 'gradient 15s ease infinite',
