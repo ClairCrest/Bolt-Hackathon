@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Mail, Lock, Loader2} from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import DiscordCanary from '../assets/Discord_Canary.png';
+import BoltBadge from '../assets/black_circle_360x360.png';
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -34,7 +35,22 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4 relative">
+      {/* Bolt.new Badge */}
+      <a
+        href="https://bolt.new/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 transition-all duration-200 hover:scale-105 hover:opacity-80"
+        title="Built with bolt.new"
+      >
+        <img
+          src={BoltBadge}
+          alt="Built with bolt.new"
+          className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 drop-shadow-lg"
+        />
+      </a>
+
       <div className="w-full max-w-md">
         <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
           <div className="text-center mb-8">
