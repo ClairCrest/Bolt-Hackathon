@@ -47,7 +47,7 @@ export default function Login() {
         <img
           src={BoltBadge}
           alt="Built with bolt.new"
-          className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 drop-shadow-lg"
+          className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 drop-shadow-lg"
         />
       </a>
 
