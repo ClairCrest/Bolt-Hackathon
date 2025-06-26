@@ -12,36 +12,36 @@ export default function BoltBadge({
   size = 'md'
 }: BoltBadgeProps) {
   const sizeClasses = {
-    sm: 'w-8 h-8',
-    md: 'w-12 h-12',
-    lg: 'w-16 h-16'
+    sm: 'w-10 h-10 text-xs',
+    md: 'w-12 h-12 text-sm',
+    lg: 'w-16 h-16 text-base'
   };
 
   const getStyles = () => {
-    const baseStyles = `${sizeClasses[size]} rounded-full flex items-center justify-center font-bold text-white transition-all duration-200 hover:scale-110 hover:opacity-80`;
+    const baseStyles = `${sizeClasses[size]} rounded-full flex items-center justify-center font-bold transition-all duration-200 hover:scale-110 hover:opacity-80 shadow-lg`;
     
     switch (variant) {
       case 'white':
         return `${baseStyles} bg-white text-gray-800 border-2 border-gray-200`;
       case 'black':
-        return `${baseStyles} bg-gray-800 text-white`;
+        return `${baseStyles} bg-gray-900 text-white`;
       case 'text':
-        return `${baseStyles} bg-gradient-to-r from-blue-500 to-purple-600`;
+        return `${baseStyles} bg-gradient-to-r from-blue-500 to-purple-600 text-white`;
       default:
-        return `${baseStyles} bg-gray-800 text-white`;
+        return `${baseStyles} bg-gray-900 text-white`;
     }
   };
 
   const getText = () => {
     switch (size) {
       case 'sm':
-        return 'B';
+        return 'BOLT';
       case 'md':
         return 'BOLT';
       case 'lg':
         return 'BOLT';
       default:
-        return 'B';
+        return 'BOLT';
     }
   };
 
@@ -55,9 +55,9 @@ export default function BoltBadge({
     >
       <div className={getStyles()}>
         {variant === 'text' ? (
-          <span className="text-xs font-bold">Powered by Bolt</span>
+          <span className="text-xs font-bold px-2">Powered by Bolt</span>
         ) : (
-          <span className={size === 'sm' ? 'text-xs' : 'text-sm'}>{getText()}</span>
+          <span className="font-bold">{getText()}</span>
         )}
       </div>
     </a>

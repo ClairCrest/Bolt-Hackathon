@@ -35,14 +35,14 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative">
+    <div className="min-h-screen flex items-center justify-center p-4 relative bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Bolt.new Badge - Top Right */}
-      <div className="absolute top-4 right-4 z-10">
+      <div className="fixed top-6 right-6 z-50">
         <BoltBadge variant="black" size="md" />
       </div>
 
       <div className="w-full max-w-md">
-        <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/30">
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full mb-4">
               <img src={DiscordCanary} alt="Discord Canary Logo" className="w-12 h-12" />
