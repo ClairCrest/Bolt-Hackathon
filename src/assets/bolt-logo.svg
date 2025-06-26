@@ -1,8 +1,0 @@
-<svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="180" cy="180" r="180" fill="white"/>
-  <circle cx="180" cy="180" r="170" fill="#1a1a1a"/>
-  <path d="M120 100L240 180L160 180L200 260L80 180L160 180L120 100Z" fill="#FFD700"/>
-  <text x="180" y="320" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">
-    Powered by Bolt
-  </text>
-</svg>
