@@ -34,7 +34,7 @@ export default function DiscordButton({
   };
 
   const positionClasses = position === 'fixed' 
-    ? 'fixed top-4 left-4 sm:top-6 sm:left-6 z-50' 
+    ? 'fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50' 
     : 'relative';
 
   const currentSize = sizeClasses[size];
