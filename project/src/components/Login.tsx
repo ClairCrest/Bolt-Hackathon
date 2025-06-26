@@ -36,19 +36,36 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative">
-      {/* Bolt.new Badge */}
+      {/* Responsive Bolt.new Badge with Text Extension */}
       <a
         href="https://bolt.new/"
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 transition-all duration-200 hover:scale-105 hover:opacity-80"
+        className="group absolute top-4 right-4 sm:top-6 sm:right-6 z-10 transition-all duration-300 ease-in-out hover:scale-105"
         title="Built with bolt.new"
       >
-        <img
-          src={BoltBadge}
-          alt="Built with bolt.new"
-          className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 drop-shadow-lg"
-        />
+        <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200/50 overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-xl">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <img
+              src={BoltBadge}
+              alt="bolt.new"
+              className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 transition-all duration-300"
+            />
+          </div>
+          
+          {/* Expandable Text */}
+          <div className="overflow-hidden transition-all duration-300 ease-in-out w-0 group-hover:w-32 sm:group-hover:w-36 md:group-hover:w-40">
+            <div className="px-3 py-2 whitespace-nowrap">
+              <span className="text-gray-800 font-semibold text-xs sm:text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                Built with bolt.new
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Subtle glow effect on hover */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-lg"></div>
       </a>
 
       <div className="w-full max-w-md">
