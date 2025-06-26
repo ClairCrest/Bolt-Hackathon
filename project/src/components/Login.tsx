@@ -34,19 +34,7 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative">
-      {/* Bolt Logo in top right corner */}
-      <div className="absolute top-6 right-6 z-10">
-        <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border border-white/20">
-          <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded flex items-center justify-center">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 text-white fill-current">
-              <path d="M13 3L4 14h7l-1 8 9-11h-7l1-8z"/>
-            </svg>
-          </div>
-          <span className="text-sm font-semibold text-gray-700">Bolt</span>
-        </div>
-      </div>
-
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
           <div className="text-center mb-8">
