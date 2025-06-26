@@ -1,4 +1,7 @@
 import React from 'react';
+import blackCircle from '../../assets/black_circle_360x360.png';
+import whiteCircle from '../../assets/white_circle_360x360.png';
+import logoText from '../../assets/logotext_poweredby_360w.png';
 
 interface BoltBadgeProps {
   variant?: 'white' | 'black' | 'text';
@@ -20,26 +23,19 @@ export default function BoltBadge({
   const getImageSrc = () => {
     switch (variant) {
       case 'white':
-        return '/bolt-white-circle.png';
+        return whiteCircle;
       case 'black':
-        return '/bolt-black-circle.png';
+        return blackCircle;
       case 'text':
-        return '/bolt-logo-text.png';
+        return logoText;
       default:
-        return '/bolt-black-circle.png';
+        return blackCircle;
     }
   };
 
   const getAltText = () => {
     return variant === 'text' ? 'Powered by Bolt.new' : 'Built with Bolt.new';
   };
-
-  // Fallback to a simple SVG if images don't load
-  const FallbackBadge = () => (
-    <div className={`${sizeClasses[size]} bg-black rounded-full flex items-center justify-center text-white font-bold text-xs`}>
-      BOLT
-    </div>
-  );
 
   return (
     <a
@@ -53,17 +49,7 @@ export default function BoltBadge({
         src={getImageSrc()}
         alt={getAltText()}
         className={`${sizeClasses[size]} object-contain`}
-        onError={(e) => {
-          // Replace with fallback if image fails to load
-          const target = e.target as HTMLImageElement;
-          target.style.display = 'none';
-          const fallback = target.nextElementSibling as HTMLElement;
-          if (fallback) fallback.style.display = 'flex';
-        }}
       />
-      <div className={`${sizeClasses[size]} bg-black rounded-full items-center justify-center text-white font-bold text-xs hidden`}>
-        BOLT
-      </div>
     </a>
   );
 }
