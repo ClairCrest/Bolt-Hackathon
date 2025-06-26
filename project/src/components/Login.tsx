@@ -1,7 +1,9 @@
+// src/components/Login.tsx
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Mail, Lock, Loader2} from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
+import DiscordCanary from '../assets/Discord_Canary.png';
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -32,15 +34,15 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary-50 via-white to-secondary-50">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full mb-4">
-              <Mail className="w-8 h-8 text-white" />
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full mb-4">
+              <img src={DiscordCanary} alt="Discord Canary Logo" className="w-12 h-12" />
             </div>
             <h1 className="text-2xl font-bold text-gray-800 mb-2">Welcome Back</h1>
-            <p className="text-gray-600">Sign in to your AI Paper Assistant account</p>
+            <p className="text-gray-600">Sign in to your BOTCHANA account</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -89,7 +91,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-semibold py-3 px-4 rounded-xl hover:from-primary-600 hover:to-accent-600 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="w-full bg-gradient-to-r from-yellow-500 to-orange-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-yellow-600 hover:to-orange-700 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {isLoading ? (
                 <>
@@ -107,7 +109,7 @@ export default function Login() {
               Don't have an account?{' '}
               <a
                 href="/register"
-                className="text-primary-600 hover:text-accent-700 font-semibold transition-colors duration-200"
+                className="text-yellow-600 hover:text-orange-700 font-semibold transition-colors duration-200"
               >
                 Sign up here
               </a>
