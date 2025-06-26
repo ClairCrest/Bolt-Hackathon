@@ -1,4 +1,7 @@
 import React from 'react';
+import blackCircle from '../../assets/black_circle_360x360.png';
+import whiteCircle from '../../assets/white_circle_360x360.png';
+import logoText from '../../assets/logotext_poweredby_360w.png';
 
 interface BoltBadgeProps {
   variant?: 'white' | 'black' | 'text';
@@ -20,13 +23,13 @@ export default function BoltBadge({
   const getImageSrc = () => {
     switch (variant) {
       case 'white':
-        return '/src/assets/white_circle_360x360.png';
+        return whiteCircle;
       case 'black':
-        return '/src/assets/black_circle_360x360.png';
+        return blackCircle;
       case 'text':
-        return '/src/assets/logotext_poweredby_360w.png';
+        return logoText;
       default:
-        return '/src/assets/black_circle_360x360.png';
+        return blackCircle;
     }
   };
 
